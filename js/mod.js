@@ -1,4 +1,4 @@
-﻿let modInfo = {
+let modInfo = {
 	name: "劝退树",
 	id: "Such_A_Stupid_Game",
 	author: "QwQe308",
@@ -7,16 +7,18 @@
 	discordLink: "",
 	initialStartPoints: new ExpantaNum (0), // Used for hard resets and new players
 	
-	offlineLimit: 0.2,  // In hours
+	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
+	num: "0.2",
 	name: "",
 }
 
 let changelog = `<h1>更新记录:</h1><br>
+    <h3>v0.2</h3><br>
+		- 添加第三劝退点的内容.<br><br>
 	<h3>v0.1</h3><br>
 		- 添加0~2劝退点的内容.`
 
@@ -43,7 +45,7 @@ function getPointGen() {
 		i = upgID[i]
 		if(hasUpgrade("p",i)) gain = gain.mul(upgradeEffect("p",i))
 	}
-	if(inChallenge("p",11) || inChallenge("p",12)){
+	if(inChallenge("p",11) || inChallenge("p",12) || inChallenge("p",13)){
 		if(hasUpgrade("p",12)) gain = gain.div(upgradeEffect("p",12).pow(2))
 		else gain = gain.div(upgradeEffect("p",12))
 	}
@@ -62,7 +64,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return isUnl(3)
+	return isUnl(4)
 }
 
 
@@ -71,7 +73,7 @@ function isEndgame() {
 
 // You can change this if you have things that can be messed up by long tick lengths
 function maxTickLength() {
-	return(120) // Default is 1 hour which is just arbitrarily large
+	return(3600) // Default is 1 hour which is just arbitrarily large
 }
 
 // Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,
